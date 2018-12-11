@@ -13,6 +13,7 @@ import java.util.Collection;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = {"*"})
 public class Controller {
 
     @Autowired
@@ -21,7 +22,7 @@ public class Controller {
     @Autowired
     private WebGenomicsClient webGenomicsClient;
 
-    @CrossOrigin(origins = {"http://localhost:4200", "https://social-media-ecosystem-mashup.herokuapp.com"})
+    @CrossOrigin(origins = {"http://localhost:4200", "https://social-media-ecosystem-mashup.herokuapp.com", "*"})
     @GetMapping("/search")
     public Collection<Analysis> getGenomicsAnalyses(@RequestParam("query") String query) {
         Collection<Analysis> analyses = new ArrayList<Analysis>();
