@@ -26,6 +26,7 @@ public class Controller {
     @GetMapping("/search")
     public Collection<Analysis> getGenomicsAnalyses(@RequestParam("query") String query) {
         Collection<Analysis> analyses = new ArrayList<Analysis>();
+         try {
         SearchResponse forObject = template.getForObject("https://www.googleapis.com/customsearch/v1?key=AIzaSyANNKdsj57oxTNR3LWExatX-l-t26OrhwI&cx=014793772949123529930:qdflpscf6y8&q="+query, SearchResponse.class);
         for (Item item : forObject.getItems()) {
             try {
@@ -33,6 +34,8 @@ public class Controller {
             } catch (IOException e) {
             }
         }
+        } catch (Exception e) {
+            }
         return analyses;
     }
 }
